@@ -14,8 +14,8 @@ import (
 )
 
 func main() {
-	//	加载配置
-	config, err := config2.Load()
+	//	加载对话模型配置
+	config, err := config2.LoadChatConfig()
 	if err != nil {
 		fmt.Println(err)
 		log.Fatal(err)
@@ -24,7 +24,7 @@ func main() {
 	timeout := 60 * time.Second
 	ctx := context.Background()
 	model, err := ark.NewChatModel(ctx, &ark.ChatModelConfig{
-		APIKey:  config.APIKEY,
+		APIKey:  config.APIKey,
 		Model:   config.Model,
 		BaseURL: config.BaseURL,
 		Timeout: &timeout,
