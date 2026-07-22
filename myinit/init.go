@@ -1,4 +1,4 @@
-package init
+package myinit
 
 import (
 	"context"
@@ -68,7 +68,7 @@ func IndexerInit(ctx context.Context, embedder *ark2.Embedder) (*milvus.Indexer,
 	indexer, err := milvus.NewIndexer(ctx, &milvus.IndexerConfig{
 		Client:     clent.MilvusCli,
 		Embedding:  embedder,
-		Collection: "eino_collection_v2", // 新名称，旧 collection 是错误 schema 需重建
+		Collection: "eino_collection_v3", // 新名称，旧 collection 是错误 schema 需重建
 		Fields: []*entity.Field{
 			entity.NewField().
 				WithName("id").
@@ -81,7 +81,7 @@ func IndexerInit(ctx context.Context, embedder *ark2.Embedder) (*milvus.Indexer,
 				WithDescription("the vector of the document").
 				WithIsPrimaryKey(false).
 				WithDataType(entity.FieldTypeFloatVector).
-				WithDim(1024),
+				WithDim(4096),
 			entity.NewField().
 				WithName("content").
 				WithDescription("the content of the document").
