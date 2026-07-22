@@ -38,23 +38,27 @@ func main() {
 		logger.Fatal(err)
 	}
 
-	//	准备文档
-	fileurl := "transformer/document.md"
+	judge := false // 是否开启存储，true表示分割文档内容并存储
+	if judge {
+		//	准备文档
+		fileurl := "transformer/document.md"
 
-	//	切割文档内容
-	results, err := util.SplitFile(ctx, fileurl, "docs1", splitter)
-	if err != nil {
-		logger.Fatal(err)
-	}
+		//	切割文档内容
+		results, err := util.SplitFile(ctx, fileurl, "docs1", splitter)
+		if err != nil {
+			logger.Fatal(err)
+		}
 
-	// 存储数据
-	_, err = indexer.Store(ctx, results)
-	if err != nil {
-		logger.Fatal(err)
+		// 存储数据
+		_, err = indexer.Store(ctx, results)
+		if err != nil {
+			logger.Fatal(err)
+		}
 	}
 
 	// 检索数据
 	for {
+		fmt.Println("请输入要检索内容，exit退出:")
 		input := ""
 		fmt.Scanf("%s", &input)
 		input = strings.TrimSpace(input)

@@ -81,13 +81,13 @@ func IndexerInit(ctx context.Context, embedder *ark2.Embedder) (*milvus.Indexer,
 				WithDescription("the vector of the document").
 				WithIsPrimaryKey(false).
 				WithDataType(entity.FieldTypeFloatVector).
-				WithDim(4096),
+				WithDim(1024),
 			entity.NewField().
 				WithName("content").
 				WithDescription("the content of the document").
 				WithIsPrimaryKey(false).
 				WithDataType(entity.FieldTypeVarChar).
-				WithMaxLength(1024),
+				WithMaxLength(4096),
 			entity.NewField().
 				WithName("metadata").
 				WithDescription("the metadata of the document").
@@ -132,7 +132,7 @@ func RetrieverInit(ctx context.Context, embedder *ark2.Embedder) (*milvus2.Retri
 
 	retriever, err := milvus2.NewRetriever(ctx, &milvus2.RetrieverConfig{
 		Client:      clent.MilvusCli,
-		Collection:  "eino_collection_v2",
+		Collection:  "eino_collection_v3",
 		Partition:   nil,
 		VectorField: "vector",
 		OutputFields: []string{
