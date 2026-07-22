@@ -25,12 +25,12 @@ func main() {
 		logger.Fatal(err)
 	}
 
-	//	准备分割的文档
-	file, err := os.OpenFile("transformer/document.md", os.O_CREATE|os.O_RDWR, 0755)
-	if err != nil {
-		logger.Fatal(err)
-	}
-	defer file.Close()
+	////	准备分割的文档
+	//file, err := os.OpenFile("transformer/document.md", os.O_CREATE|os.O_RDWR, 0755)
+	//if err != nil {
+	//	logger.Fatal(err)
+	//}
+	//defer file.Close()
 	data, err := os.ReadFile("transformer/document.md")
 	if err != nil {
 		logger.Fatal(err)
