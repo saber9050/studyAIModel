@@ -12,6 +12,7 @@ require (
 	github.com/bytedance/sonic/loader v0.5.0 // indirect
 	github.com/cloudwego/base64x v0.1.6 // indirect
 	github.com/cloudwego/eino v0.9.12 // indirect
+	github.com/cloudwego/eino-ext/components/document/transformer/splitter/markdown v0.0.0-20260716140429-9137edd89e72 // indirect
 	github.com/cloudwego/eino-ext/components/embedding/ark v0.1.2 // indirect
 	github.com/cloudwego/eino-ext/components/indexer/milvus v0.0.0-20260716140429-9137edd89e72 // indirect
 	github.com/cloudwego/eino-ext/components/model/ark v0.1.68 // indirect

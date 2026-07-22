@@ -50,7 +50,7 @@ func main() {
 			"content",
 			"metadata",
 		},
-		TopK:       1,
+		TopK:       1, // 指定返回的条数
 		Embedding:  embedder,
 		MetricType: entity.COSINE,
 		Sp:         searchParam,
@@ -78,5 +78,7 @@ func main() {
 		log.Println("未找到相关结果")
 		return
 	}
-	fmt.Println(result[0].Content)
+	for i := 0; i < len(result); i++ {
+		fmt.Println(result[i].Content)
+	}
 }
