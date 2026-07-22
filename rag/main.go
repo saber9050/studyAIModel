@@ -11,6 +11,8 @@ import (
 )
 
 func main() {
+	collection := "eino_collection_v3"
+
 	ctx := context.Background()
 	// 加载向量模型
 	embedder, err := myinit.EmbeddingInit(ctx)
@@ -18,12 +20,12 @@ func main() {
 		logger.Fatal(err)
 	}
 	// 加载存储器
-	indexer, err := myinit.IndexerInit(ctx, embedder)
+	indexer, err := myinit.IndexerInit(ctx, embedder, collection)
 	if err != nil {
 		logger.Fatal(err)
 	}
 	// 加载索引器
-	retriever, err := myinit.RetrieverInit(ctx, embedder)
+	retriever, err := myinit.RetrieverInit(ctx, embedder, collection)
 	if err != nil {
 		logger.Fatal(err)
 	}

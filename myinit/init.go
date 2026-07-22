@@ -61,14 +61,14 @@ func EmbeddingInit(ctx context.Context) (*ark2.Embedder, error) {
 }
 
 // IndexerInit 文本内容存储器初始化
-func IndexerInit(ctx context.Context, embedder *ark2.Embedder) (*milvus.Indexer, error) {
+func IndexerInit(ctx context.Context, embedder *ark2.Embedder, collection string) (*milvus.Indexer, error) {
 	clent.InitClient()
 
 	// BGE-M3 输出 1024 维 float 向量，必须用 FloatVector，不能使用默认的 BinaryVector
 	indexer, err := milvus.NewIndexer(ctx, &milvus.IndexerConfig{
 		Client:     clent.MilvusCli,
 		Embedding:  embedder,
-		Collection: "eino_collection_v3", // 新名称，旧 collection 是错误 schema 需重建
+		Collection: collection, // 新名称，旧 collection 是错误 schema 需重建
 		Fields: []*entity.Field{
 			entity.NewField().
 				WithName("id").
@@ -124,7 +124,7 @@ func IndexerInit(ctx context.Context, embedder *ark2.Embedder) (*milvus.Indexer,
 }
 
 // RetrieverInit 初始化检索器
-func RetrieverInit(ctx context.Context, embedder *ark2.Embedder) (*milvus2.Retriever, error) {
+func RetrieverInit(ctx context.Context, embedder *ark2.Embedder, collection string) (*milvus2.Retriever, error) {
 	// 初始化检索器
 	searchParam, _ := entity.NewIndexAUTOINDEXSearchParam(1)
 	searchParam.AddRadius(0.0)
@@ -132,7 +132,7 @@ func RetrieverInit(ctx context.Context, embedder *ark2.Embedder) (*milvus2.Retri
 
 	retriever, err := milvus2.NewRetriever(ctx, &milvus2.RetrieverConfig{
 		Client:      clent.MilvusCli,
-		Collection:  "eino_collection_v3",
+		Collection:  collection,
 		Partition:   nil,
 		VectorField: "vector",
 		OutputFields: []string{
