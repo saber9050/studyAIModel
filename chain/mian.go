@@ -33,7 +33,7 @@ func main() {
 	// 输入类型 string 输出类型 *schema.Message
 	chain := compose.NewChain[string, *schema.Message]()
 
-	//	连接各个节点
+	//	连接各个节点(chain编排，加入时就可以自动连接节点)
 	chain.AppendLambda(lambda).AppendChatModel(chatmodel)
 
 	// 编译链条
